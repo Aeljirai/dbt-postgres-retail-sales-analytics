@@ -1,0 +1,15 @@
+# Copy this file to ~/.dbt/profiles.yml (create the folder if it doesn't
+# exist) -- never commit your real profiles.yml, it can hold credentials.
+# These match docker-compose.yml's postgres service exactly.
+bim_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: bim
+      password: bim
+      dbname: bim_warehouse
+      schema: dbt_dev
+      threads: 4

@@ -1,0 +1,23 @@
+version: 2
+
+seeds:
+  - name: raw_products
+    description: "Raw product catalogue (loaded by dbt seed)."
+    config:
+      column_types:
+        unit_price: numeric(10,2)
+  - name: raw_stores
+    description: "Raw store list (loaded by dbt seed)."
+  - name: raw_promotions
+    description: "Raw promotions (loaded by dbt seed)."
+    config:
+      column_types:
+        discount_pct: numeric(5,2)
+        start_date: date
+        end_date: date
+  - name: raw_checkout_items
+    description: "Raw checkout line items (loaded by dbt seed)."
+    config:
+      column_types:
+        order_id: varchar
+        checkout_at: timestamp

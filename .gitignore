@@ -1,0 +1,21 @@
+# Python
+.venv/
+venv/
+__pycache__/
+
+# dbt artifacts
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+dbt_project/.user.yml
+logs/
+
+# Local credentials -- copy profiles.yml.example to ~/.dbt/profiles.yml instead
+dbt_project/profiles.yml
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

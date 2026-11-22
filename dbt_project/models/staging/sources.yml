@@ -1,0 +1,19 @@
+version: 2
+
+# The raw tables are loaded by `dbt seed` (see seeds/). In a real project
+# they would be loaded by Fivetran / Airflow; the source() definition below
+# stays the same.
+sources:
+  - name: raw
+    database: bim_warehouse
+    schema: raw
+    tables:
+      - name: raw_products
+      - name: raw_stores
+      - name: raw_promotions
+      - name: raw_checkout_items
+        # `dbt source freshness` compares max(checkout_at) with now()
+        loaded_at_field: checkout_at
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}

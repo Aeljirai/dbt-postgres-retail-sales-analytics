@@ -1,0 +1,33 @@
+name: 'bim_analytics'
+version: '1.0.0'
+config-version: 2
+
+profile: 'bim_analytics'
+
+model-paths: ["models"]
+snapshot-paths: ["snapshots"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  # how far back staging looks for checkout items -- override at the CLI
+  # with --vars '{"start_date": "2026-09-05"}' without touching any SQL
+  start_date: '2026-01-01'
+
+models:
+  bim_analytics:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: ephemeral
+    marts:
+      +materialized: table
+
+seeds:
+  bim_analytics:
+    +schema: raw        # seeds land in schema "raw" (see macros/generate_schema_name.sql)
