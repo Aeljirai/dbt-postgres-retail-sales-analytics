@@ -242,6 +242,7 @@ cp dbt_project/profiles.yml.example ~/.dbt/profiles.yml
 
 cd dbt_project
 dbt debug                                     # expect: All checks passed!
+dbt seed                                      # load the raw layer (sources read it by name)
 dbt build                                     # seed → snapshot → run → test, in DAG order
 ```
 

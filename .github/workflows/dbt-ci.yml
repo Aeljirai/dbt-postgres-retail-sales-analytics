@@ -47,6 +47,11 @@ jobs:
       - name: dbt debug
         run: dbt debug
 
+      # sources reference raw.* by name (not ref()), so dbt can't infer the
+      # seed -> source dependency: load the raw layer first.
+      - name: dbt seed
+        run: dbt seed
+
       - name: dbt build (seed, snapshot, run, test)
         run: dbt build
 
